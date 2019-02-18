@@ -16,7 +16,7 @@ import org.jsoup.nodes.Document;
  * @author Nika.Narushvili
  */
 @Singleton
-public class PewdsSubCounter {
+public class Worker {
 
     private String pewdsURL;
     private String tSeriesURL;
@@ -31,7 +31,7 @@ public class PewdsSubCounter {
         return new String[]{pewdsSubCount, tSeriesSubCount};
     }
 
-    public PewdsSubCounter() {
+    public Worker() {
 
     }
 
