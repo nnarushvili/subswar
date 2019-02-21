@@ -44,14 +44,16 @@ public class CounterServlet extends HttpServlet {
         }
 
     }
-    @Inject
-    private Worker subCounter;
+    
+    
+    private static Worker subCounter;
 
     private static SubDTO last;
     
     @PostConstruct
     @Override
     public void init() {
+        subCounter = Worker.getInstance();
         Timer timer = new Timer();
         timer.schedule(new subGetter(), 0, 1);
     }
@@ -60,11 +62,11 @@ public class CounterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        PrintWriter writer = response.getWriter();
-        writer.println("PewDiePie subs : " + last.getPewdsSubs());
-        writer.println("T-Serie subs : " + last.gettSeriesSubs());
-        writer.println("Difference : " + last.getSubDifference());
-        writer.close();
+        try (PrintWriter writer = response.getWriter()) {
+            writer.println("PewDiePie subs : " + last.getPewdsSubs());
+            writer.println("T-Serie subs : " + last.gettSeriesSubs());
+            writer.println("Difference : " + last.getSubDifference());
+        }
     }
 
 

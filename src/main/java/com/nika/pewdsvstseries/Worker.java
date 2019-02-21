@@ -7,7 +7,6 @@ package com.nika.pewdsvstseries;
 
 import java.io.IOException;
 import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -15,7 +14,7 @@ import org.jsoup.nodes.Document;
  *
  * @author Nika.Narushvili
  */
-@Singleton
+
 public class Worker {
 
     private String pewdsURL;
@@ -31,8 +30,14 @@ public class Worker {
         return new String[]{pewdsSubCount, tSeriesSubCount};
     }
 
-    public Worker() {
-
+    private Worker() {
+        
+    }
+    
+    private static Worker instance = new Worker();
+    
+    public static Worker getInstance(){
+        return instance;
     }
 
     @PostConstruct
