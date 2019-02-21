@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nika
  */
-@WebServlet(name = "SubCounter", urlPatterns = {"/"}, loadOnStartup=1)
+@WebServlet(name = "SubCounter", urlPatterns = {"/"}, loadOnStartup = 1)
 public class CounterServlet extends HttpServlet {
 
     private class subGetter extends TimerTask {
@@ -43,12 +43,11 @@ public class CounterServlet extends HttpServlet {
         }
 
     }
-    
-    
+
     private static Worker subCounter;
 
     private static SubDTO last;
-    
+
     @PostConstruct
     @Override
     public void init() {
@@ -56,18 +55,18 @@ public class CounterServlet extends HttpServlet {
         Timer timer = new Timer();
         timer.schedule(new subGetter(), 0, 1);
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("test");
         try (PrintWriter writer = response.getWriter()) {
             writer.println("PewDiePie subs : " + last.getPewdsSubs());
             writer.println("T-Serie subs : " + last.gettSeriesSubs());
-            writer.println("Difference : " + last.getSubDifference());
+            int subDiff = last.getSubDifference();
+            String favored = subDiff > 0 ? "PewDiePie" : "T-Series";
+            writer.println(String.format("%s is leading with %d subs", favored, Math.abs(subDiff)));
         }
     }
-
 
 }
