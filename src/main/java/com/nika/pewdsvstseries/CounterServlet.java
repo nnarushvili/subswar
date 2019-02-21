@@ -62,7 +62,7 @@ public class CounterServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter writer = response.getWriter()) {
             writer.println("PewDiePie subs : " + last.getPewdsSubs());
-            writer.println("T-Serie subs : " + last.gettSeriesSubs());
+            writer.println("T-Series subs : " + last.gettSeriesSubs());
             int subDiff = last.getSubDifference();
             String favored = subDiff > 0 ? "PewDiePie" : "T-Series";
             writer.println(String.format("%s is leading with %d subs", favored, Math.abs(subDiff)));
