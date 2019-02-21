@@ -17,8 +17,8 @@ import org.jsoup.nodes.Document;
 
 public class Worker {
 
-    private String pewdsURL;
-    private String tSeriesURL;
+    private final String pewdsURL = "https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw";
+    private final String tSeriesURL = "https://www.youtube.com/channel/UCq-Fj5jknLsUf-MWSy4_brA";
     private Document pewdsDoc;
     private Document tSeriesDoc;
 
@@ -40,11 +40,6 @@ public class Worker {
         return instance;
     }
 
-    @PostConstruct
-    public void init() {
-        pewdsURL = "https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw";
-        tSeriesURL = "https://www.youtube.com/channel/UCq-Fj5jknLsUf-MWSy4_brA";
-    }
 
     private void retrieveSubs() throws IOException {
         pewdsDoc = Jsoup.connect(pewdsURL).execute().parse();
