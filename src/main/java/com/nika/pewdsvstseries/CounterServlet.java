@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,7 +60,8 @@ public class CounterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("test");
         try (PrintWriter writer = response.getWriter()) {
             writer.println("PewDiePie subs : " + last.getPewdsSubs());
             writer.println("T-Serie subs : " + last.gettSeriesSubs());
