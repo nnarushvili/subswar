@@ -60,12 +60,15 @@ public class CounterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
+        StringBuilder HTML = new StringBuilder(String.format("<html><head><meta charset=\"utf-8\"><title>Subscriber war</head><body><h1>PewDiePie subs : %s"
+                + "</h1><h1>T-Series subs : %s"
+                + "</h1><h1>PewDiePie is leading with %d subs"
+                + "</h1>",last.getPewdsSubs(), last.gettSeriesSubs(), last.getSubDifference()));
         try (PrintWriter writer = response.getWriter()) {
-            writer.println("PewDiePie subs : " + last.getPewdsSubs());
-            writer.println("T-Series subs : " + last.gettSeriesSubs());
             int subDiff = last.getSubDifference();
             String favored = subDiff > 0 ? "PewDiePie" : "T-Series";
-            writer.println(String.format("%s is leading with %d subs", favored, Math.abs(subDiff)));
+            HTML.append(String.format("<h1>%s is leading with %d subs</h1></body></html>", favored, Math.abs(subDiff)));
+            writer.write(HTML.toString());
         }
     }
 
