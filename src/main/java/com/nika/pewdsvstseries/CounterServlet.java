@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nika
  */
-@WebServlet(name = "SubCounter", urlPatterns = {"/"}, loadOnStartup = 1)
+@WebServlet(name = "SubCounter", urlPatterns = {""}, loadOnStartup = 1)
 public class CounterServlet extends HttpServlet {
 
     private class subGetter extends TimerTask {
