@@ -60,10 +60,11 @@ public class CounterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
-        StringBuilder HTML = new StringBuilder(String.format("<html><head><meta charset=\"utf-8\"><title>Subscriber war</title></head><body><h1>PewDiePie subs : %s"
-                + "</h1><h1>T-Series subs : %s"
-                + "</h1><h1>PewDiePie is leading with %d subs"
-                + "</h1>",last.getPewdsSubs(), last.gettSeriesSubs(), last.getSubDifference()));
+        StringBuilder HTML = new StringBuilder(String.format("<html><head><meta charset=\"utf-8\"><title>Subscriber war</title></head><body>"
+                +"<img src=%s> <h1>PewDiePie subs : %s"
+                + "</h1>"
+                + "<img src=%s> <h1>T-Series subs : %s"
+                + "</h1>","images/pewds.png", "images/tseries.png", last.getPewdsSubs(), last.gettSeriesSubs(), last.getSubDifference()));
         try (PrintWriter writer = response.getWriter()) {
             int subDiff = last.getSubDifference();
             String favored = subDiff > 0 ? "PewDiePie" : "T-Series";
