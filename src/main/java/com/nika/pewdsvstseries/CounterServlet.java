@@ -64,7 +64,7 @@ public class CounterServlet extends HttpServlet {
                 +"<img src=%s> <h1>PewDiePie subs : %s"
                 + "</h1>"
                 + "<img src=%s> <h1>T-Series subs : %s"
-                + "</h1>","images/pewds.png", "images/tseries.png", last.getPewdsSubs(), last.gettSeriesSubs(), last.getSubDifference()));
+                + "</h1>","images/pewd.png", last.getPewdsSubs(), "images/tseries.png", last.gettSeriesSubs(), last.getSubDifference()));
         try (PrintWriter writer = response.getWriter()) {
             int subDiff = last.getSubDifference();
             String favored = subDiff > 0 ? "PewDiePie" : "T-Series";
