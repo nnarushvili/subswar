@@ -60,17 +60,17 @@ public class CounterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
-        StringBuilder HTML = new StringBuilder(String.format("<html><head><meta charset=\"utf-8\"><title>Subscriber war</title></head><body>"
-                +"<div style=\"display:inline; width:40%; margin-right:10%;\"><img src=%s> <h1>PewDiePie subs : %s"
-                + "</h1></div>"
-                + "<div style=\"display:inline; width:40%; margin-right:10%;\">"
-                + "<img src=%s> <h1>T-Series subs : %s"
-                + "</h1></div>","images/pewd.png", last.getPewdsSubs(), "images/tseries.png", last.gettSeriesSubs(), last.getSubDifference()));
-        try (PrintWriter writer = response.getWriter()) {
+        try(PrintWriter writer = response.getWriter()){
+            StringBuilder HTML = new StringBuilder(String.format("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Subscriber war</title></head><body>"
+                +"<img src=%s>&nbsp;&nbsp;&nbsp;<img src=%s><br><h1 style=\"display:inline\">PewDiePie subs : %s</h1>"
+                + "&nbsp;&nbsp;&nbsp;<h1 style=\"display:inline\">T-Series subs : %s"
+                + "</h1>","images/pewd.png", "images/tseries.png", last.getPewdsSubs(), last.gettSeriesSubs()));
             int subDiff = last.getSubDifference();
             String favored = subDiff > 0 ? "PewDiePie" : "T-Series";
             HTML.append(String.format("<h1>%s is leading with %d subs</h1></body></html>", favored, Math.abs(subDiff)));
             writer.write(HTML.toString());
+        }catch (Exception ex) {
+            response.getWriter().write("fetching, please refresh...");
         }
     }
 
